@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class PacienteService implements IPacienteService {
@@ -106,19 +105,5 @@ public class PacienteService implements IPacienteService {
             LOGGER.error("No se ha encontrado el paciente con id {}" + id);
             throw new ResourceNotFoundException("No se ha encontrado el paciente con id " + id); // throw quivalente a un return
         }
-    }
-
-    public boolean compararPacientes(Paciente paciente, PacienteDto pacienteDto) {
-        Paciente paciente2 = objectMapper.convertValue(pacienteDto, Paciente.class);
-        return (paciente.getId().equals(paciente2.getId()) &&
-                paciente.getNombre().equals(paciente2.getNombre()) &&
-                paciente.getApellido().equals(paciente2.getApellido()) &&
-                paciente.getDni().equals(paciente2.getDni()) &&
-                paciente.getFechaIngreso().equals(paciente2.getFechaIngreso()) &&
-                paciente.getDomicilio().getId().equals(paciente2.getDomicilio().getId()) &&
-                paciente.getDomicilio().getCalle().equals(paciente2.getDomicilio().getCalle()) &&
-                Objects.equals(paciente.getDomicilio().getNumero(), paciente2.getDomicilio().getNumero()) &&
-                paciente.getDomicilio().getLocalidad().equals(paciente2.getDomicilio().getLocalidad()) &&
-                paciente.getDomicilio().getProvincia().equals(paciente2.getDomicilio().getProvincia()));
     }
 }

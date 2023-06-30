@@ -6,7 +6,6 @@ import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
-// VAN A RETORNAR DTO
 public interface IPacienteService{
     List<PacienteDto> listarPacientes();
     PacienteDto buscarPacientePorId(Long id);

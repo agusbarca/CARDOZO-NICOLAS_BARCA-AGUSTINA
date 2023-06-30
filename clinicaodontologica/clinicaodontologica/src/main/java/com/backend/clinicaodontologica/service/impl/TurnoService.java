@@ -3,8 +3,6 @@ package com.backend.clinicaodontologica.service.impl;
 import com.backend.clinicaodontologica.dto.OdontologoDto;
 import com.backend.clinicaodontologica.dto.PacienteDto;
 import com.backend.clinicaodontologica.dto.TurnoDto;
-import com.backend.clinicaodontologica.entity.Odontologo;
-import com.backend.clinicaodontologica.entity.Paciente;
 import com.backend.clinicaodontologica.entity.Turno;
 import com.backend.clinicaodontologica.exceptions.BadRequestException;
 import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
@@ -72,32 +70,20 @@ public class TurnoService implements ITurnoService {
             odontologo = odontologoService.buscarOdontologoPorId(turno.getOdontologo().getId()); // capturamos el odontologo
         }
 
-        Paciente pacienteTurno = turno.getPaciente();
-        Odontologo odontologoTurno = turno.getOdontologo();
-
-        if (paciente == null || odontologo == null) {
-            if (paciente == null && odontologo == null) {
+        if(paciente == null || odontologo == null) {
+            if(paciente == null && odontologo == null) {
                 LOGGER.error("El paciente y el odontologo no se encuentran en nuestra base de datos");
-                throw new BadRequestException("El paciente y el odontologo no se encuentran en nuestra base de datos");
-            } else if (paciente == null) {
+                throw new BadRequestException("El paciente no se encuentra en nuestra base de datos");
+            }
+            else if (paciente == null){
                 LOGGER.error("El paciente no se encuentra en nuestra base de datos");
                 throw new BadRequestException("El paciente no se encuentra en nuestra base de datos");
             } else {
                 LOGGER.error("El odontologo no se encuentra en nuestra base de datos");
                 throw new BadRequestException("El odontologo no se encuentra en nuestra base de datos");
             }
-        } else if (!pacienteService.compararPacientes(pacienteTurno, paciente) || !odontologoService.compararOdontologos(odontologoTurno, odontologo)){
-            if (!pacienteService.compararPacientes(pacienteTurno, paciente) && !odontologoService.compararOdontologos(odontologoTurno, odontologo)) {
-                LOGGER.error("Alguno de los datos del odontologo y del paciente no coinciden con los registrados en la base de datos");
-                throw new BadRequestException("Alguno de los datos del odontologo y del paciente no coinciden con los registrados en la base de datos");
-            } else if (!odontologoService.compararOdontologos(odontologoTurno, odontologo)) {
-                LOGGER.error("Alguno de los datos del odontologo no coinciden con los registrados en la base de datos");
-                throw new BadRequestException("Alguno de los datos del odontologo no coinciden con los registrados en la base de datos");
-            } else {
-                LOGGER.error("Alguno de los datos del paciente no coinciden con los registrados en la base de datos");
-                throw new BadRequestException("Alguno de los datos del paciente no coinciden con los registrados en la base de datos");
-            }
-        }else {
+
+        } else {
             turnoDto = TurnoDto.fromTurno(turnoRepository.save(turno));
             LOGGER.info("Nuevo turno registrado con exito: {}", JsonPrinter.toString(turnoDto));
         }

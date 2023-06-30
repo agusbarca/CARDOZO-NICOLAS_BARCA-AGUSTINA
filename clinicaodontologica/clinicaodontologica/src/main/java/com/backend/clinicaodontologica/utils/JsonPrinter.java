@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class JsonPrinter {
-    // para no estar sobreecribiendo el toString en todas las enteidades, y el formato que le damos aca imprime en formato Json  (es decir, tanto clave como valor todo en string)
     public static String toString(Object t) {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateAdapter());

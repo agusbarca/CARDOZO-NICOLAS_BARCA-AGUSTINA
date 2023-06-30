@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ITurnoService {
     List<TurnoDto> listarTurnos();
-    TurnoDto buscarTurnoPorId(Long id); // throws ResourceNotFoundException no porque pisa el de eliminarTruno
+    TurnoDto buscarTurnoPorId(Long id);
 
     TurnoDto guardarTurno(Turno turno) throws BadRequestException;
     TurnoDto actualizarTurno (Turno turno) throws BadRequestException, ResourceNotFoundException;

@@ -96,12 +96,4 @@ public class OdontologoService implements IOdontologoService {
         }
 
     }
-
-    public boolean compararOdontologos(Odontologo odontologo, OdontologoDto odontologoDto) {
-        Odontologo odontologo2 = objectMapper.convertValue(odontologoDto, Odontologo.class);
-        return (odontologo.getId().equals(odontologo2.getId()) &&
-                odontologo.getNombre().equals(odontologo2.getNombre()) &&
-                odontologo.getApellido().equals(odontologo2.getApellido()) &&
-                odontologo.getMatricula().equals(odontologo2.getMatricula()));
-    }
 }
