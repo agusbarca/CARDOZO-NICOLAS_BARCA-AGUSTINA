@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD de Turnos</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Incluir las bibliotecas de Material-UI -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <!-- Include the MDL JavaScript -->
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <!-- Incluir la biblioteca de jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1 class="mdl-typography--display-4">CRUD de Turnos</h1>
+
+    <h2 class="mdl-typography--headline">Crear Turno</h2>
+    <form id="form-crear" class="mdl-grid">
+        <div class="mdl-cell mdl-cell--6-col">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <select class="mdl-textfield__input" id="paciente" required>
+              <option value="" disabled selected></option>
+              <!-- Opciones del select para pacientes -->
+            </select>
+            <label class="mdl-textfield__label" for="paciente">Paciente:</label>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-cell--6-col">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <select class="mdl-textfield__input" id="odontologo" required>
+              <option value="" disabled selected></option>
+              <!-- Opciones del select para odontólogos -->
+            </select>
+            <label class="mdl-textfield__label" for="odontologo">Odontólogo:</label>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-cell--6-col">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="fechaHora" required>
+            <label class="mdl-textfield__label" for="fechaHora">Fecha y Hora (yyyy-MM-dd HH:mm):</label>
+          </div>
+        </div>
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Crear</button>
+      </form>
+      
+  
+    <h2 class="mdl-typography--headline">Listado de Turnos</h2>
+    <table id="tabla-turnos" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <thead>
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric">ID</th>
+          <th class="mdl-data-table__cell--non-numeric">Paciente</th>
+          <th class="mdl-data-table__cell--non-numeric">Odontólogo</th>
+          <th class="mdl-data-table__cell--non-numeric">Fecha y Hora</th>
+          <th class="mdl-data-table__cell--non-numeric">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Los datos de los turnos se cargarán dinámicamente aquí -->
+      </tbody>
+    </table>
+
+    <!-- Modal de edición de turnos -->
+    <div id="modal-container">
+        <div id="modal-editar" class="mdl-dialog">
+      <div class="modal-content">
+        <h3 class="mdl-typography--headline">Editar Turno</h3>
+        <form id="form-editar" class="mdl-grid">
+          <input type="hidden" id="edit-id">
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="edit-paciente" required>
+              <label class="mdl-textfield__label" for="edit-paciente">Paciente:</label>
+            </div>
+          </div>
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="edit-odontologo" required>
+              <label class="mdl-textfield__label" for="edit-odontologo">Odontólogo:</label>
+            </div>
+          </div>
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="edit-fechaHora" required>
+              <label class="mdl-textfield__label" for="edit-fechaHora">Fecha y Hora (dd-MM-yyyy HH:mm):</label>
+            </div>
+          </div>
+          <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Guardar</button>
+          <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="closeModal()">Cerrar</button>
+        </form>
+      </div>
+    </div>
+    </div>
+
+      <!-- Capa para la transparencia del fondo -->
+  <div id="modal-overlay"></div>
+
+    <script src="app-turnos.js"></script>
+</body>
+</html>
